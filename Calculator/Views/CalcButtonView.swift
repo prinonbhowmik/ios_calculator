@@ -1,5 +1,5 @@
 //
-//  ResultView.swift
+//  ButtonView.swift
 //  Calculator
 //
 //  Created by Prinon bhowmik on 12/10/24.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct ResultView: View {
+struct CalcButtonView: View {
     
-    let currentComputation: String
-    let mainResult: String
+    @Binding var currentComputation: String
+    @Binding var mainResult: String
     
     var body: some View {
         VStack(spacing: 10){
@@ -31,9 +31,10 @@ struct ResultView: View {
                     .minimumScaleFactor(0.1)
             }
         }.padding()
+            
     }
 }
 
 #Preview {
-    ResultView(currentComputation: "5+1", mainResult: "6")
+    CalcButtonView(currentComputation: .constant("5+1"), mainResult: .constant("6"))
 }

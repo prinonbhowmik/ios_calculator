@@ -14,7 +14,7 @@ struct MainView: View {
     @State var mainResult: String = "0"
     
     var body: some View {
-        ZStack {
+        ZStack() {
             primaryBackgroundColor
                 .ignoresSafeArea()
             
@@ -33,10 +33,11 @@ struct MainView: View {
                 
                 Spacer()
                 
-                ButtonView(currentComputation: $currentComputation, mainResult: $mainResult)
+                CalcButtonView(currentComputation: $currentComputation, mainResult: $mainResult)
             }
         }
         .environment(\.colorScheme, lightMode ? .light : .dark)
+        
         
     }
 }

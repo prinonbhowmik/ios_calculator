@@ -6,13 +6,27 @@ struct TopButtonView: View {
     var lightMode: Bool
     
     var body: some View {
-        Text("Hello World!")
+        HStack(spacing : 20) {
+            Image(systemName: "sun.min")
+                .imageScale(.large)
+                .foregroundColor(lightMode ? sunOrMoonSelectedColor : sunOrMoonNotSelectedColor)
+            Image(systemName: "moon.fill")
+                .imageScale(.large)
+                .foregroundColor(lightMode ? sunOrMoonNotSelectedColor : sunOrMoonSelectedColor)
+        }
+        .padding()
+        .background(secondaryBackgroundColor)
+        .cornerRadius(20)
     }
         
 }
 
 struct SunMoonView_Previews: PreviewProvider {
     static var previews: some View {
-        TopButtonView(lightMode: true)
+        VStack {
+            TopButtonView(lightMode: true)
+            TopButtonView(lightMode: false)
+        }
+        
     }
 }
