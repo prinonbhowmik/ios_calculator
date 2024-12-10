@@ -1,9 +1,3 @@
-//
-//  ButtonView.swift
-//  Calculator
-//
-//  Created by Prinon bhowmik on 12/10/24.
-//
 
 import SwiftUI
 
@@ -12,25 +6,65 @@ struct CalcButtonView: View {
     @Binding var currentComputation: String
     @Binding var mainResult: String
     
+    let buttonData: [RowOfCalcButtonModel] = [
+        RowOfCalcButtonModel(
+            row: [CalcButtonModel(calcButton: .clear ,color: foregroundTopButtonsColor),
+                  CalcButtonModel(calcButton: .negative ,color: foregroundTopButtonsColor),
+                  CalcButtonModel(calcButton: .percent ,color: foregroundTopButtonsColor),
+                  CalcButtonModel(calcButton: .divide ,color: foregroundRightButtonsColor)
+                                  ]),
+        RowOfCalcButtonModel(row: [
+            CalcButtonModel(calcButton: .seven),
+            CalcButtonModel(calcButton: .eight),
+            CalcButtonModel(calcButton: .nine),
+            CalcButtonModel(calcButton: .multiply,
+                            color: foregroundRightButtonsColor
+                           )
+        ]),
+        RowOfCalcButtonModel(row: [
+            CalcButtonModel(calcButton: .four),
+            CalcButtonModel(calcButton: .five),
+            CalcButtonModel(calcButton: .six),
+            CalcButtonModel(calcButton: .subtract,
+                            color: foregroundRightButtonsColor
+                           )
+        ]),
+        RowOfCalcButtonModel(row: [
+            CalcButtonModel(calcButton: .one),
+            CalcButtonModel(calcButton: .two),
+            CalcButtonModel(calcButton: .three),
+            CalcButtonModel(calcButton: .add,
+                            color: foregroundRightButtonsColor
+                           )
+        ]),
+        RowOfCalcButtonModel(row: [
+            CalcButtonModel(calcButton: .undo),
+            CalcButtonModel(calcButton: .zero),
+            CalcButtonModel(calcButton: .decimal),
+            CalcButtonModel(calcButton: .equal,
+                            color: foregroundRightButtonsColor
+                           )
+        ])
+        
+    ]
+    
     var body: some View {
-        VStack(spacing: 10){
-            HStack {
-                Spacer()
-                Text(currentComputation)
-                    .foregroundColor(foregroundDigitsColor)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.1)
+        Grid(){
+            ForEach(buttonData){ rowOfButton in
+                GridRow{
+                    ForEach(rowOfButton.row){ buttonModel in
+                        
+                        Button(action: {
+                            
+                        },label: {
+                            ButtonView(calcButton: buttonModel.calcButton, fgColor: buttonModel.color, bgColor: buttonBackgroundColor)
+                        })
+                    }
+                }
             }
-            HStack {
-                Spacer()
-                Text(mainResult)
-                    .foregroundColor(foregroundDigitsColor)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.1)
-            }
-        }.padding()
+        }
+        .padding()
+        .background(secondaryBackgroundColor.cornerRadius(20))
             
     }
 }
