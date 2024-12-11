@@ -18,6 +18,7 @@ struct ResultView: View {
                 Spacer()
                 Text(currentComputation)
                     .foregroundColor(foregroundDigitsColor)
+                    .font(.system(size: 22,weight: .semibold))
                     .lineLimit(1)
                     .minimumScaleFactor(0.1)
             }
@@ -25,8 +26,7 @@ struct ResultView: View {
                 Spacer()
                 Text(mainResult)
                     .foregroundColor(foregroundDigitsColor)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+                    .font(.system(size: 40,weight: .bold))
                     .lineLimit(1)
                     .minimumScaleFactor(0.1)
             }
