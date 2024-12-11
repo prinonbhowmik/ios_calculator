@@ -81,9 +81,7 @@
                         
                         mainResult = formatResult(val: sign * calculateResult())
                         
-                        if calcButton == .negative {
-                            currentComputation = mainResult
-                        }
+                        
                     }
                 }
             case .decimal:
@@ -115,10 +113,9 @@
         func calculateResult() -> Double {
             let visibleCalculate: String = currentComputation
             
-            var calculate = visibleCalculate
-            calculate = visibleCalculate.replacingOccurrences(of: "%", with: "*0.01")
-            calculate = visibleCalculate.replacingOccurrences(of: multiplySymbol, with: "*")
-            calculate = visibleCalculate.replacingOccurrences(of: divisionSymbol, with: "/")
+            var calculate = visibleCalculate.replacingOccurrences(of: "%", with: "*0.01")
+            calculate = calculate.replacingOccurrences(of: multiplySymbol, with: "*")
+            calculate = calculate.replacingOccurrences(of: divisionSymbol, with: "/")
             
             if getLastChar(str: visibleCalculate) == "." {
                 calculate += "0"
