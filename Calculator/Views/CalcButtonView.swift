@@ -85,7 +85,35 @@
                     }
                 }
             case .decimal:
-                print("")
+                if let lastOccurenceOfDecimal = currentComputation.lastIndex(of: ".") {
+                    if lastCharIsDigit(str: currentComputation) {
+                        let startIndex = currentComputation
+                            .index(lastOccurenceOfDecimal, offsetBy: 1)
+                        let endIndex = currentComputation
+                            .endIndex
+                        let range = startIndex..<endIndex
+                        
+                        let rightSubString = String(currentComputation[range])
+                        
+                        // Only have digits to the right "."
+                        // that means do not add anothr "."
+                        // otherwise we can add another
+                        // decimal point
+                        
+                        // 23.37+108 Good -> 23.37+108.
+                        // 123.45 Bad -> Remains 123.45
+                        if Int(rightSubString) == nil && !rightSubString.isEmpty {
+                            currentComputation += "."
+                        }
+                    }
+                } else {
+                    if currentComputation.isEmpty {
+                        currentComputation += "0."
+                    } else if lastCharIsDigit(str: currentComputation) {
+                        currentComputation += "."
+                    }
+                }
+                
                 
             case .percent:
                 if lastCharIsDigit(str: currentComputation){

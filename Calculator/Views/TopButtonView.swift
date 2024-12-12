@@ -7,7 +7,7 @@ struct TopButtonView: View {
     
     var body: some View {
         HStack(spacing : 20) {
-            Image(systemName: "sun.min")
+            Image(systemName: "sun.max.fill")
                 .imageScale(.large)
                 .foregroundColor(lightMode ? sunOrMoonSelectedColor : sunOrMoonNotSelectedColor)
             Image(systemName: "moon.fill")
